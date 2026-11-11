@@ -1,0 +1,10 @@
+{
+  "name": "ltmv-ep01-setup-ide-agentes",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/discount.test.js",
+    "verify": "node scripts/verify_setup.js"
+  }
+}
