@@ -1,14 +1,25 @@
-// Caminho A ("Vibe Coding"): gerado direto no chat sem AGENTS.md nem regras
+const VIP_DISCOUNT_RATE = 0.1;
+const VIP_MIN_ORDER_TOTAL = 200;
+const ALLOWED_TIERS = new Set(['VIP', 'STANDARD']);
+
 export function calculateOrderDiscount(order) {
-  if (!order || order.total <= 0) {
-    console.log('Pedido inválido ignorado:', order);
-    return null; // Quebra o contrato retornando null silencioso
+  if (!order || !Number.isFinite(order.total) || order.total <= 0) {
+    throw new Error('Valor do pedido inválido: informe um total numérico positivo.');
   }
-  if (order.customerTier === 'VIP' && order.total > 500) {
-    return { discount: order.total * 0.15, finalTotal: order.total * 0.85 };
+
+  if (!ALLOWED_TIERS.has(order.customerTier)) {
+    throw new Error(`Tier de cliente inválido: ${order.customerTier}`);
   }
-  if (order.customerTier === 'VIP') {
-    return { discount: order.total * 0.1, finalTotal: order.total * 0.9 };
-  }
-  return { discount: 0, finalTotal: order.total };
+
+  const eligibleForVipDiscount =
+    order.customerTier === 'VIP' && order.total >= VIP_MIN_ORDER_TOTAL;
+
+  const discount = eligibleForVipDiscount
+    ? Number((order.total * VIP_DISCOUNT_RATE).toFixed(2))
+    : 0;
+
+  return {
+    discount,
+    finalTotal: Number((order.total - discount).toFixed(2))
+  };
 }
