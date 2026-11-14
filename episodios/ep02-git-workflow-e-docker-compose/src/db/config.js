@@ -1,11 +1,15 @@
-export function getDatabaseConfig() {
-  // Problema: credenciais e host chumbados na máquina do dev anterior
+export function getDatabaseConfig(env = process.env) {
+  const rawUrl = env.DATABASE_URL;
+  if (!rawUrl) {
+    throw new Error('DATABASE_URL não definida. Copie .env.example para .env ou use docker compose up.');
+  }
+  const parsed = new URL(rawUrl);
   return {
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: '123456',
-    database: 'ltmv_local_v2',
-    connectionString: 'postgres://postgres:123456@localhost:5432/ltmv_local_v2',
+    host: parsed.hostname,
+    port: Number(parsed.port || 5432),
+    user: decodeURIComponent(parsed.username),
+    password: decodeURIComponent(parsed.password),
+    database: parsed.pathname.replace(/^\//, ''),
+    connectionString: rawUrl,
   };
 }
