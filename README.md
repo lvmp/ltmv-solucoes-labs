@@ -24,3 +24,4 @@ cd ltmv-solucoes-labs
 | Episódio | Tema | Stack | Branches |
 | :--- | :--- | :--- | :--- |
 | **Ep. 01** | [Setup Limpo na IDE, `AGENTS.md` & Padrão `.agents/`](./episodios/ep01-setup-ide-e-agentes/README.md) | Node.js + `.agents/` | `ep01/01-problema` → `ep01/02-caminho-a` → `ep01/03-solucao-final` |
+| **Ep. 02** | [Git Workflow & Docker Compose (`service_healthy` + 12-Factor)](./episodios/ep02-git-workflow-e-docker-compose/README.md) | Git + Docker Compose + Postgres + Node.js | `ep02/01-problema` → `ep02/02-caminho-a` → `ep02/03-solucao-final` |

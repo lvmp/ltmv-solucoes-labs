@@ -1,0 +1,11 @@
+{
+  "name": "ep02-git-workflow-e-docker-compose",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Ep. 02 — Na Faculdade Funcionava na Minha Máquina: Git Workflow & Docker Compose (LTMV Soluções)",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/env.test.js",
+    "verify": "node scripts/verify_env.js"
+  }
+}
